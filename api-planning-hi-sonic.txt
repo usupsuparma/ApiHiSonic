@@ -28,8 +28,7 @@ res:
     "status": true,
     "message": "Register Success",
     "data": {
-        "id":1,
-        "email": "test@mail.com",
+        "email":"test@mail.com",
 
     }
 }
@@ -47,9 +46,7 @@ res:
     "status": true,
     "message": "Register Success",
     "data": {
-        "id":1,
-        "email": "test@mail.com",
-
+        "token": "1aq38oajj37",
     }
 }
 
@@ -66,9 +63,7 @@ res:
     "status": true,
     "message": "Register Success",
     "data": {
-        "id":1,
-        "email": "test@mail.com",
-
+        "token": "1aq38oajj37",
     }
 }
 
@@ -84,11 +79,10 @@ req:
 res:
 {
     "status": true,
-    "message": "Register Success",
+    "message": "Change password Success",
     "data": {
         "id":1,
         "email": "test@mail.com",
-
     }
 }
 

@@ -6,6 +6,7 @@ const { Sequelize } = require('sequelize');
 
 
 
+const authRoutes = require('./src/routes/auth');
 const app = express();
 
 const fileStorage = multer.diskStorage({
@@ -23,7 +24,7 @@ const fileFilter = (req, file, cb) => {
     } else {
         cb(null, false);
     }
-} 
+}
 
 app.use(bodyParser.json()); // type json
 app.use('/images', express.static(path.join(__dirname, 'images')));
@@ -37,10 +38,7 @@ app.use((req, res, next)=> {
     next();
 } )
 
-app.use('/', () => {
-    console.log('home');
-});
-
+app.use('/v1/auth', authRoutes);
 app.use((error, req, res, next) => {
     const status = error.errorStatus || 500;
     const message = error.message;

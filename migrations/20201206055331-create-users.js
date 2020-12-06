@@ -10,7 +10,7 @@ module.exports = {
       },
       userName: {
         type: Sequelize.STRING(40),
-        allowNull: false,
+        allowNull: true,
       },
       email: {
         type: Sequelize.STRING(40),
@@ -18,11 +18,11 @@ module.exports = {
       },
       password: {
         type: Sequelize.STRING(40),
-        allowNull: false,
+        allowNull: true,
       },
       resetPassword: {
         type: Sequelize.STRING(40),
-        allowNull: false,
+        allowNull: true,
       },
       role: {
         type: Sequelize.ENUM('admin', 'user'),
