@@ -8,12 +8,12 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      userId: {
+      user_id: {
         type: Sequelize.INTEGER(10),
         allowNull: false,
         unique:true
       },
-      deviceId: {
+      device_id: {
         type: Sequelize.INTEGER(10),
         allowNull: false,
       },
@@ -23,11 +23,11 @@ module.exports = {
       latitude: {
         type: Sequelize.STRING(20)
       },
-      createdAt: {
+      created_at: {
         allowNull: false,
         type: Sequelize.DATE
       },
-      updatedAt: {
+      updated_at: {
         allowNull: false,
         type: Sequelize.DATE
       }

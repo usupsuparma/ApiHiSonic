@@ -2,12 +2,11 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const multer = require('multer');
 const path = require('path');
-const { Sequelize } = require('sequelize');
-
-
-
+require('dotenv').config();
 const authRoutes = require('./src/routes/auth');
 const app = express();
+const {Sequelize} = require('sequelize')
+
 
 const fileStorage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -25,6 +24,25 @@ const fileFilter = (req, file, cb) => {
         cb(null, false);
     }
 }
+
+// const connection = process.env.DB_CONNECTION;
+// console.log(connection);
+// const host = process.env.DB_HOST;
+// const port = process.env.DB_PORT;
+// const database = process.env.DB_DATABASE;
+// const username = process.env.DB_USERNAME;
+// const password = process.env.DB_PASSWORD;
+// //Connect to database
+// const sequelize = new Sequelize(database, username, password, {
+//     host: host,
+//     dialect: connection,
+//     pool: {
+//         max: 5,
+//         min: 0,
+//         idle: 10000
+//     },
+//     port: port
+// });
 
 app.use(bodyParser.json()); // type json
 app.use('/images', express.static(path.join(__dirname, 'images')));
@@ -48,4 +66,11 @@ app.use((error, req, res, next) => {
 
 // get '/users/ ==> [{name: usup}]
 
-app.listen(4000, () => console.log('Connection Success'));
+app.listen(4000, async () => {
+    // try {
+    //     await sequelize.authenticate();
+    //     console.log('Connection has been established successfully.');
+    // } catch (error) {
+    //     console.error('Unable to connect to the database:', error);
+    // }
+});

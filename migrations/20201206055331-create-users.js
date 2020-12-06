@@ -8,7 +8,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      userName: {
+      user_name: {
         type: Sequelize.STRING(40),
         allowNull: true,
       },
@@ -20,7 +20,7 @@ module.exports = {
         type: Sequelize.STRING(40),
         allowNull: true,
       },
-      resetPassword: {
+      reset_password: {
         type: Sequelize.STRING(40),
         allowNull: true,
       },
@@ -29,11 +29,11 @@ module.exports = {
         allowNull: false,
         defaultValue: 'user'
   },
-      createdAt: {
+      created_at: {
         allowNull: false,
         type: Sequelize.DATE
       },
-      updatedAt: {
+      updated_at: {
         allowNull: true,
         type: Sequelize.DATE
       }

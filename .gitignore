@@ -4,3 +4,6 @@ node_modules
 /.idea/modules.xml
 /.idea/ApiHiSonic.iml
 /.idea/codeStyles/codeStyleConfig.xml
+/.env
+/.idea/api-hisonic.iml
+/config/config.json

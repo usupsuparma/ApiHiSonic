@@ -18,10 +18,18 @@ module.exports = (sequelize, DataTypes) => {
     email: DataTypes.STRING,
     password: DataTypes.STRING,
     resetPassword: DataTypes.STRING,
-    role: DataTypes.ENUM,
+    role: {
+      type: DataTypes.ENUM,
+      values: ['admin', 'user'],
+      defaultValue: 'user'
+    },
   }, {
     sequelize,
     modelName: 'users',
+    timestamps: true,
+    createdAt: 'created_at',
+    updatedAt: 'updated_at',
+
   });
   return user;
 };

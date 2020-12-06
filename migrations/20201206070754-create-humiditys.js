@@ -8,15 +8,15 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      userId: {
+      user_id: {
         type: Sequelize.INTEGER(10),
         allowNull: false,
       },
-      deviceId: {
+      device_id: {
         type: Sequelize.INTEGER(10),
         allowNull: false,
       },
-      scheduleId: {
+      schedule_id: {
         type: Sequelize.INTEGER(20),
         allowNull: false,
       },
@@ -28,11 +28,11 @@ module.exports = {
         type: Sequelize.FLOAT(10),
         allowNull: false,
       },
-      createdAt: {
+      created_at: {
         allowNull: false,
         type: Sequelize.DATE
       },
-      updatedAt: {
+      updated_at: {
         allowNull: false,
         type: Sequelize.DATE
       }
