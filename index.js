@@ -3,9 +3,10 @@ const bodyParser = require('body-parser');
 const multer = require('multer');
 const path = require('path');
 require('dotenv').config();
-const authRoutes = require('./src/routes/auth');
+const indexRoutes = require('./src/routes/index');
 const app = express();
 const {Sequelize} = require('sequelize')
+const port = process.env.PORT || 3000;
 
 
 const fileStorage = multer.diskStorage({
@@ -25,25 +26,6 @@ const fileFilter = (req, file, cb) => {
     }
 }
 
-// const connection = process.env.DB_CONNECTION;
-// console.log(connection);
-// const host = process.env.DB_HOST;
-// const port = process.env.DB_PORT;
-// const database = process.env.DB_DATABASE;
-// const username = process.env.DB_USERNAME;
-// const password = process.env.DB_PASSWORD;
-// //Connect to database
-// const sequelize = new Sequelize(database, username, password, {
-//     host: host,
-//     dialect: connection,
-//     pool: {
-//         max: 5,
-//         min: 0,
-//         idle: 10000
-//     },
-//     port: port
-// });
-
 app.use(bodyParser.json()); // type json
 app.use('/images', express.static(path.join(__dirname, 'images')));
 app.use(multer({storage: fileStorage, fileFilter: fileFilter}).single('image'));
@@ -56,7 +38,7 @@ app.use((req, res, next)=> {
     next();
 } )
 
-app.use('/v1/auth', authRoutes);
+app.use('/v1/', indexRoutes);
 app.use((error, req, res, next) => {
     const status = error.errorStatus || 500;
     const message = error.message;
@@ -66,11 +48,6 @@ app.use((error, req, res, next) => {
 
 // get '/users/ ==> [{name: usup}]
 
-app.listen(4000, async () => {
-    // try {
-    //     await sequelize.authenticate();
-    //     console.log('Connection has been established successfully.');
-    // } catch (error) {
-    //     console.error('Unable to connect to the database:', error);
-    // }
+app.listen(port, async () => {
+   console.log(`Server Running on ${port}`);
 });

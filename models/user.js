@@ -14,10 +14,10 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   user.init({
-    userName: DataTypes.STRING,
+    user_name: DataTypes.STRING,
     email: DataTypes.STRING,
     password: DataTypes.STRING,
-    resetPassword: DataTypes.STRING,
+    reset_password: DataTypes.STRING,
     role: {
       type: DataTypes.ENUM,
       values: ['admin', 'user'],
