@@ -51,7 +51,7 @@ res:
 }
 
 [3] - Verify OTP
-{root.api}/{version}/auth/register
+{root.api}/{version}/auth/verify-otp
 
 req:
 {
@@ -86,11 +86,12 @@ res:
     }
 }
 
+======================================================
 
-GROUP: Product
+GROUP: device
 
 [1] - Add New Product
-[POST] : {root.api}/{version}/product/add-product
+[POST] : {root.api}/{version}/product/add-device
 
 reg:
 {
@@ -100,7 +101,7 @@ reg:
 res:
 {
     "status": true,
-    "message": "Create Blog Post Success",
+    "message": "Add Device Success",
     "data": {
         "post_id": 1,
         "title": "Title blog",
@@ -115,7 +116,7 @@ res:
 }
 
 status->response:
-201 --> Blog Post berhasil dibuat
+201 --> Product Post berhasil dibuat
 400 --> Input yang anda masukan tidak valid
 
 ==============================================================

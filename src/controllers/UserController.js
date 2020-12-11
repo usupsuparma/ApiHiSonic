@@ -1,57 +1,42 @@
-const models = require('../../models');
+const Models = require('../models');
 const Op = require('sequelize').Op;
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 module.exports = {
-  getUsers: (req,res) => {
-    if (req.query.name) {
-      let name = req.query.name;
-      models.User.all({
-        where: {
-          name: {
-            [Op.iLike] : `%${req.query.name}%`
-          }
-        }
-      }).then((users) => {
+  getUsers: (req,res, next) => {
+      Models.users.findAll({})
+      .then(users => {
+        console.log(users);
         res.status(200).json({
-          message: `Get All User where name like ${req.query.name} `,
-          users
-        });
-      }).catch((err) => {
-        res.status(500).json({
-          message: err.message
-        });
-      });
-
-    } else {
-      models.User.all().then((users) => {
-        res.status(200).json({
-          message: "Get All User",
-          users
-        });
-      }).catch((err) => {
-        res.status(500).json({
-          message: err.message
-        });
-      });
-    }
+          status: true,
+          message: 'all users',
+          data: users
+        })
+      })
+      .catch(err => {
+        console.log(err);
+        next(err);
+      })
   },
-  getUser: (req, res) => {
-    const id = req.params.id;
-    models.User.findById(id).then((user) => {
+  getUser: (req, res, next) => {
+    const user = req.user;
+    const id = user.id;
+    Models.users.findOne({
+      where: {
+        id: id
+    }
+    })
+    .then(user => {
       res.status(200).json({
-        message: `Get an User with id ${id}`,
-        user
-      });
-    }).catch((err) => {
-      res.status(500).json({
-        message: err.message
-      });
-    });
+        status: true,
+        message: 'get Detail user',
+        data: user
+      })
+    })
   },
   createUser: (req, res) => {
-    models.User.create(req.body).then((user) => {
+    Models.users.create(req.body).then((user) => {
       res.status(201).json({
         message: `Success Created New User`,
         user
@@ -65,7 +50,7 @@ module.exports = {
   deleteUser: (req, res) => {
     const id = req.params.id;
     let userData;
-    models.User.findById(id).then((user) => {
+    Models.users.findById(id).then((user) => {
       userData = user;
       return user.destroy();
     }).then((user) => {
@@ -81,7 +66,7 @@ module.exports = {
   },
   updateUser: (req, res) => {
     const id = req.params.id;
-    models.User.findById(id).then((user) => {
+    Models.users.findById(id).then((user) => {
       return user.update(req.body);
     }).then((user) => {
       res.status(200).json({

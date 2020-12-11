@@ -7,6 +7,7 @@ const indexRoutes = require('./src/routes/index');
 const app = express();
 const {Sequelize} = require('sequelize')
 const port = process.env.PORT || 3000;
+const db = require('./src/models');
 
 
 const fileStorage = multer.diskStorage({
@@ -47,7 +48,8 @@ app.use((error, req, res, next) => {
 })
 
 // get '/users/ ==> [{name: usup}]
+    app.listen(port, async () => {
+        console.log(`Server Running on ${port}`);
+     });
 
-app.listen(port, async () => {
-   console.log(`Server Running on ${port}`);
-});
+

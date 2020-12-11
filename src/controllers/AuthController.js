@@ -1,10 +1,9 @@
-const models = require('../../models');
+const models = require('../models');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 exports.register = (req, res, next) => {
     const email = req.body.email;
     const password = req.body.password;
-    console.log(process.env.SALT);
     const salt = bcrypt.genSaltSync(10);
     const passwordHash = bcrypt.hashSync(password, salt);
     models.users.create({
