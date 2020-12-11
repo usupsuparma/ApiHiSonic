@@ -14,13 +14,13 @@ module.exports = (sequelize, DataTypes) => {
         }
     };
     device.init({
-        userId: DataTypes.INTEGER,
-        deviceTokenKey: DataTypes.STRING,
-        deviceType: DataTypes.STRING,
-        deviceName: DataTypes.STRING,
+        user_id: DataTypes.INTEGER,
+        device_token_key: DataTypes.STRING,
+        device_type: DataTypes.STRING,
+        device_name: DataTypes.STRING,
         misdn: DataTypes.INTEGER,
         network: DataTypes.STRING,
-        deviceStatus: {
+        device_status: {
             type: DataTypes.ENUM,
             values: ['on', 'off'],
             defaultValue: 'off'
