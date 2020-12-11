@@ -48,8 +48,8 @@ app.use((error, req, res, next) => {
 })
 
 // get '/users/ ==> [{name: usup}]
-    app.listen(port, async () => {
-        console.log(`Server Running on ${port}`);
-     });
+app.listen(port, async () => {
+    console.log(`Server Running on ${port}`);
+});
 
 
