@@ -49,12 +49,17 @@ exports.login = async (req, res, next) => {
           process.env.SECRET
         );
         res.status(200).json({
+          status: true,
           message: "Success Sign In",
-          token: token,
+          data: {
+            token: token
+          }
         });
       } else {
         res.status(401).json({
+          status: false,
           message: "Failed Sign in",
+          data: null
         });
       }
     })
