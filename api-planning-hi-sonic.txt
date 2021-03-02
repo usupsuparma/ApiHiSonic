@@ -124,3 +124,83 @@ status->response:
 [2] --> Get Blob Post
 [3] --> Update Blog Post
 [4] --> Delete Blog Post
+
+===========================================================by screen ================================
+[1] Register Screen
+[POST] : {root.api}/{version}/auth/register
+
+req:
+{
+    "name": "test",
+    "user_name": "test",
+    "email": "test@mail.com",
+    "password": "123456",
+}
+
+res:
+{
+    "status": true,
+    "message": "Register Success",
+    "data": {
+        "email":"test@mail.com",
+        "name": "test",
+        "user_name": "test",
+        "token": "123asdf"
+    }
+}
+
+status->response:
+201 --> Register Berhasil
+400 --> Input yang anda masukan tidak valid
+
+======================================================================
+[2] Login Screen
+[POST] : {root.api}/{version}/auth/login
+
+req:
+{
+    "email": "test@mail.com",
+    "password": "123456",
+}
+
+res:
+{
+    "status": true,
+    "message": "Register Success",
+    "data": {
+        "email":"test@mail.com",
+        "name": "test",
+        "user_name": "test",
+        "token": "123asdf"
+    }
+}
+
+
+status->response:
+200 --> Login Berhasil
+400 --> Input yang anda masukan tidak valid
+
+======================================================
+
+[3] Dashboard Screen
+[POST] : {root.api}/{version}/device/add
+
+req:
+{
+    "id_device": "123",
+}
+
+res:
+{
+    "status": true,
+    "message": "Add Device Success",
+    "data": {
+        "id_device":"12345",
+        "device_type": "test",
+        "token_device": "asdf1234f"
+    }
+}
+
+status->response:
+200 --> Add Device Success
+400 --> Input yang anda masukan tidak valid
