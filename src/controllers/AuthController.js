@@ -1,15 +1,20 @@
 const models = require("../models");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+
 const { validationResult } = require("express-validator");
 
 exports.register = (req, res, next) => {
+  const name = req.body.name;
+  const user_name = req.body.user_name;
   const email = req.body.email;
   const password = req.body.password;
   const salt = bcrypt.genSaltSync(10);
   const passwordHash = bcrypt.hashSync(password, salt);
   models.users
     .create({
+      name: name,
+      user_name: user_name,
       email: email,
       password: passwordHash,
     })
@@ -60,14 +65,17 @@ exports.login = async (req, res, next) => {
           process.env.SECRET
         );
         res.status(200).json({
-          success: true,
+          status: true,
           message: "Success Sign In",
-          token: token,
+          data: {
+            token: token,
+          },
         });
       } else {
         res.status(401).json({
-          success: false,
+          status: false,
           message: "Failed Sign in",
+          data: null,
         });
       }
     })

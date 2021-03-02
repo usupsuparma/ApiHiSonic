@@ -45,6 +45,7 @@ app.use((req, res, next) => {
 });
 
 app.use("/v1/", indexRoutes);
+
 app.use((error, req, res, next) => {
   const status = error.errorStatus || 500;
   const message = error.message;

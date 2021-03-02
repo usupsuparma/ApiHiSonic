@@ -21,6 +21,8 @@ GROUP: Authentication
 req:
 {
     "email": "test@mail.com",
+    "password": '123456',
+
 }
 
 res:
