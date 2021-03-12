@@ -1,17 +1,11 @@
 const models = require("../models");
+const Models = require("../models");
 
 module.exports = {
   addNewDevice: (req, res, next) => {
     console.log(req.headers);
     console.log(req.headers.api_token);
     let apiToken = req.headers.api_token;
-    if (apiToken != 12345) {
-      res.status(401).json({
-        success: false,
-        message: "Api Token Not provide",
-        data: null,
-      });
-    }
 
     const suhu = req.body.suhu;
     const kelembaban = req.body.kelembaban;
@@ -42,5 +36,26 @@ module.exports = {
     //     humidity: kelembaban,
     //   },
     // });
+  },
+  deviceStatus: (req, res, next) => {
+    console.log(req.headers);
+    console.log(req.headers.api_token);
+    let apiToken = req.headers.api_token;
+    Models.devices
+      .findOne({
+        where: {
+          device_token_key: apiToken,
+        },
+      })
+      .then((device) => {
+        res.status(200).json({
+          status: true,
+          message: "get Detail user",
+          data: device.device_status,
+        });
+      })
+      .catch((err) => {
+        next(err);
+      });
   },
 };

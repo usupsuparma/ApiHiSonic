@@ -1,7 +1,5 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class gps extends Model {
     /**
@@ -12,15 +10,21 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
     }
-  };
-  gps.init({
-    userId: DataTypes.INTEGER,
-    deviceId: DataTypes.INTEGER,
-    longitude: DataTypes.STRING,
-    latitude: DataTypes.STRING
-  }, {
-    sequelize,
-    modelName: 'gps',
-  });
+  }
+  gps.init(
+    {
+      userId: DataTypes.INTEGER,
+      deviceId: DataTypes.INTEGER,
+      longitude: DataTypes.STRING,
+      latitude: DataTypes.STRING,
+    },
+    {
+      sequelize,
+      modelName: "gps",
+      timestamps: true,
+      createdAt: "created_at",
+      updatedAt: "updated_at",
+    }
+  );
   return gps;
 };
